@@ -49,8 +49,7 @@ export function FieldRecord() {
               <div className={styles.entry}>
                 <dt>Completed</dt>
                 <dd>
-                  {educationCompleted.school} — {educationCompleted.field},{" "}
-                  {educationCompleted.period}
+                  {`${educationCompleted.school} — ${educationCompleted.field}, ${educationCompleted.period}`}
                 </dd>
               </div>
             </dl>
