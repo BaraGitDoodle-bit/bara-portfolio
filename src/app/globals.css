@@ -1,0 +1,138 @@
+/* Design tokens — see DESIGN.md. No raw hex outside this file. */
+
+:root {
+  /* Color (semantic) */
+  --color-paper: #edeae8;
+  --color-card: #f8f7f2;
+  --color-ink: #21231f;
+  --color-steel: #5f665c;
+  --color-steel-on-ink: #b9bdb2;
+  --color-rule: #d2d4cb;
+  --color-signal: #e4571f;
+  --color-signal-deep: #9c3d0f;
+
+  /* Semantic aliases */
+  --color-background: var(--color-paper);
+  --color-surface: var(--color-card);
+  --color-text: var(--color-ink);
+  --color-text-secondary: var(--color-steel);
+  --color-text-on-ink: var(--color-paper);
+  --color-text-secondary-on-ink: var(--color-steel-on-ink);
+  --color-border: var(--color-rule);
+  --color-accent: var(--color-signal);
+  --color-accent-text: var(--color-signal-deep);
+  --color-band: var(--color-ink);
+
+  /* Spacing scale — 0.25rem steps, no off-scale values */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* Radius — small, industrial; one scale */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* Type */
+  --font-display: var(--font-archivo), "Arial Narrow", sans-serif;
+  --font-body: var(--font-plex-sans), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  --text-display: clamp(2.5rem, 7vw, 4rem);
+  --text-section: 1.75rem;
+  --text-body: 1.0625rem;
+  --text-small: 0.875rem;
+
+  --measure: 44rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--color-accent-text);
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  color: var(--color-ink);
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--color-accent-text);
+  outline-offset: 2px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Skip link: hidden until focused. */
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -4rem;
+  background: var(--color-ink);
+  color: var(--color-text-on-ink);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  z-index: 20;
+}
+
+.skip-link:focus-visible {
+  top: var(--space-3);
+  color: var(--color-text-on-ink);
+  outline-color: var(--color-accent);
+}
+
+/* Reduced motion: no animation, no smooth scrolling. GSAP is also gated
+   in JavaScript, so content renders in its final state. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
