@@ -2,7 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<script>document.documentElement.classList.add('js');</script>
+<script>
+  (function () {
+    document.documentElement.classList.add('js');
+    try {
+      var theme = window.localStorage.getItem('theme');
+      if (theme === 'light' || theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', theme);
+      }
+    } catch (error) {}
+  })();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nur Toha Mubarak — AI Systems Builder</title>
 <meta name="description" content="Portfolio of Nur Toha Mubarak, an AI Systems Builder and Digital Product Developer in Jakarta Utara, Indonesia.">
@@ -34,9 +44,55 @@
     --hairline: #E6DFD3;
     --muted: #5F574E;
     --soft: #6B6157;
+    --text-body: #3F382F;
+    --border-strong: #C9BFAE;
+    --media-bg: #F4EFE6;
+    --border-dashed: #CFC4B2;
+    --code-bg: #171310;
+    --code-text: #F1E9DC;
+    --code-caption: #B9AD9A;
     --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    color-scheme: light;
   }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ivory: #171310;
+      --ink: #FBF8F2;
+      --card: #3F382F;
+      --hairline: #5F574E;
+      --muted: #C9BFAE;
+      --soft: #B9AD9A;
+      --text-body: #F1E9DC;
+      --border-strong: #6B6157;
+      --media-bg: #3F382F;
+      --border-dashed: #6B6157;
+      --code-bg: #171310;
+      --code-text: #F1E9DC;
+      --code-caption: #B9AD9A;
+      color-scheme: dark;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ivory: #171310;
+    --ink: #FBF8F2;
+    --card: #3F382F;
+    --hairline: #5F574E;
+    --muted: #C9BFAE;
+    --soft: #B9AD9A;
+    --text-body: #F1E9DC;
+    --border-strong: #6B6157;
+    --media-bg: #3F382F;
+    --border-dashed: #6B6157;
+    --code-bg: #171310;
+    --code-text: #F1E9DC;
+    --code-caption: #B9AD9A;
+    color-scheme: dark;
+  }
+
+  [hidden] { display: none !important; }
 
   *, *::before, *::after { box-sizing: border-box; }
 
@@ -62,14 +118,15 @@
   a { color: inherit; }
 
   a:focus-visible,
-  button:focus-visible {
+  button:focus-visible,
+  input:focus-visible {
     outline: 3px solid var(--accent);
     outline-offset: 3px;
   }
 
   ::selection {
-    background: var(--accent);
-    color: #FFFFFF;
+    background: var(--ink);
+    color: var(--ivory);
   }
 
   .wrap {
@@ -158,7 +215,7 @@
     cursor: pointer;
   }
 
-  .nav-toggle:hover { border-color: #C9BFAE; }
+  .nav-toggle:hover { border-color: var(--border-strong); }
 
   .nav-toggle-icon {
     display: block;
@@ -228,7 +285,7 @@
     max-width: 58ch;
     font-size: 1.0625rem;
     line-height: 1.72;
-    color: #3F382F;
+    color: var(--text-body);
   }
 
   .hero-actions {
@@ -287,7 +344,60 @@
 
   html.js .copy-button { display: inline-flex; }
 
-  .copy-button:hover { border-color: #C9BFAE; }
+  .copy-button:hover { border-color: var(--border-strong); }
+
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    background: var(--card);
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.875rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .theme-toggle:hover { border-color: var(--border-strong); }
+
+  .project-filters { margin: 0 0 24px; display: none; }
+  html.js .project-filters { display: block; }
+  .filter-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .filter-chip {
+    padding: 6px 12px;
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    background: var(--card);
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+  }
+  .filter-chip:hover { border-color: var(--border-strong); }
+  .filter-chip[aria-pressed="true"] {
+    background: var(--ink);
+    color: var(--ivory);
+    border-color: var(--ink);
+  }
+  .project-search {
+    width: 100%;
+    max-width: 320px;
+    padding: 8px 12px;
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--ink);
+    font: inherit;
+    font-size: 0.95rem;
+  }
+  .project-search:focus { border-color: var(--border-strong); }
+  .project-count { margin: 8px 0 0; font-size: 0.875rem; color: var(--muted); }
+  .project-empty { display: none; text-align: center; padding: 24px; color: var(--muted); }
+  .project-empty.is-visible { display: block; }
+  .live-meta { margin: 12px 0 0; font-size: 0.8rem; color: var(--muted); font-family: var(--mono); }
 
   .copy-status {
     flex-basis: 100%;
@@ -393,7 +503,7 @@
     transition: border-color 160ms ease;
   }
 
-  .card:hover { border-color: #C9BFAE; }
+  .card:hover { border-color: var(--border-strong); }
 
   .card-wide { grid-column: 1 / -1; }
 
@@ -444,7 +554,7 @@
     margin: 0 0 18px;
     font-size: 0.95rem;
     line-height: 1.72;
-    color: #3F382F;
+    color: var(--text-body);
   }
 
   .tags {
@@ -475,7 +585,7 @@
     width: 100%;
     height: auto;
     border: 1px solid var(--hairline);
-    background: #F4EFE6;
+    background: var(--media-bg);
   }
 
   .diagram {
@@ -552,7 +662,7 @@
     padding: 18px;
     overflow-x: auto;
     background: var(--ink);
-    color: #F1E9DC;
+    color: var(--code-text);
     font-family: var(--mono);
     font-size: 12px;
     line-height: 1.65;
@@ -569,7 +679,7 @@
     margin: 0;
     padding: 0 18px 14px;
     background: var(--ink);
-    color: #B9AD9A;
+    color: var(--code-caption);
   }
 
   .mini-grid {
@@ -589,7 +699,7 @@
     transition: border-color 160ms ease;
   }
 
-  .mini-card:hover { border-color: #C9BFAE; }
+  .mini-card:hover { border-color: var(--border-strong); }
 
   .mini-card h3 { font-size: 1.15rem; margin-bottom: 10px; }
 
@@ -597,7 +707,7 @@
     margin: 0 0 14px;
     font-size: 0.875rem;
     line-height: 1.68;
-    color: #3F382F;
+    color: var(--text-body);
   }
 
   .mini-note {
@@ -636,7 +746,7 @@
     border-left: 2px solid var(--hairline);
     font-size: 0.84rem;
     line-height: 1.65;
-    color: #3F382F;
+    color: var(--text-body);
   }
 
   .research-list strong { font-weight: 600; }
@@ -644,7 +754,7 @@
   .security-line {
     margin: 16px 0 0;
     padding-top: 12px;
-    border-top: 1px dashed #CFC4B2;
+    border-top: 1px dashed var(--border-dashed);
     font-family: var(--mono);
     font-size: 10.5px;
     line-height: 1.7;
@@ -663,7 +773,7 @@
     max-width: 64ch;
     font-size: 1rem;
     line-height: 1.78;
-    color: #3F382F;
+    color: var(--text-body);
   }
 
   .about-copy p + p { margin-top: 18px; }
@@ -833,6 +943,7 @@
 <header class="site-header">
   <div class="wrap header-inner">
     <a class="wordmark" href="#top">Nur Toha Mubarak</a>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false" aria-label="Toggle dark mode">Dark mode</button>
     <nav aria-label="Primary">
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
         <svg class="nav-toggle-icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false">
@@ -880,8 +991,19 @@
         <p class="section-intro">Five projects, each presented at the scale the evidence supports.</p>
       </div>
 
+      <div class="project-filters" id="project-filters">
+        <div class="filter-chips" role="group" aria-label="Filter projects by status">
+          <button type="button" class="filter-chip" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="filter-chip" data-filter="deployed" aria-pressed="false">Deployed MVP</button>
+          <button type="button" class="filter-chip" data-filter="prototype" aria-pressed="false">Functional prototype</button>
+          <button type="button" class="filter-chip" data-filter="research" aria-pressed="false">Research</button>
+        </div>
+        <input type="search" class="project-search" id="project-search" placeholder="Search projects…" aria-label="Search projects">
+        <p class="project-count" id="project-count" aria-live="polite"></p>
+      </div>
+      <p class="project-empty" id="project-empty">No projects match your filters.</p>
       <div class="work-grid">
-        <article class="card card-wide" aria-labelledby="p1-title">
+        <article class="card card-wide" aria-labelledby="p1-title" data-repo="BaraGitDoodle-bit/nanoorcloud">
           <div class="card-top">
             <p class="status"><span class="status-dot" aria-hidden="true"></span>Deployed MVP</p>
             <span class="card-index" aria-hidden="true">01</span>
@@ -961,7 +1083,7 @@
           </div>
         </article>
 
-        <article class="card" aria-labelledby="p3-title">
+        <article class="card" aria-labelledby="p3-title" data-repo="dokumenhilangid-blip/pantau-app">
           <div class="card-top">
             <p class="status"><span class="status-dot" aria-hidden="true"></span>Functional prototype — deployment unknown</p>
             <span class="card-index" aria-hidden="true">03</span>
@@ -1011,7 +1133,7 @@
             <a href="https://github.com/dokumenhilangid-blip/pantau-app" target="_blank" rel="noopener noreferrer">Repository <span aria-hidden="true">↗</span></a>
           </div>
         </article>
-        <article class="card card-wide" aria-labelledby="p4-title">
+        <article class="card card-wide" aria-labelledby="p4-title" data-repo="BaraGitDoodle-bit/tiny-stack-vm">
           <div class="card-top">
             <p class="status"><span class="status-dot" aria-hidden="true"></span>Functional prototype — submitted, grading unknown</p>
             <span class="card-index" aria-hidden="true">04</span>
@@ -1091,7 +1213,7 @@ function execute(prog, input) {
             <a href="https://github.com/BaraGitDoodle-bit/tiny-stack-vm" target="_blank" rel="noopener noreferrer">Repository <span aria-hidden="true">↗</span></a>
           </div>
         </article>
-        <article class="card card-wide" aria-labelledby="p5-title">
+        <article class="card card-wide" aria-labelledby="p5-title" data-repo="dokumenhilangid-blip/drift">
           <div class="card-top">
             <p class="status"><span class="status-dot" aria-hidden="true"></span>Functional prototype — deployment unknown</p>
             <span class="card-index" aria-hidden="true">05</span>
@@ -1164,7 +1286,7 @@ function execute(prog, input) {
       </div>
 
       <div class="mini-grid">
-        <article class="mini-card" aria-labelledby="p6-title">
+        <article class="mini-card" aria-labelledby="p6-title" data-repo="BaraGitDoodle-bit/nanoorcloud-agent">
           <div class="card-top">
             <p class="status"><span class="status-dot" aria-hidden="true"></span>Functional prototype</p>
             <span class="card-index" aria-hidden="true">06</span>
@@ -1189,7 +1311,7 @@ function execute(prog, input) {
           </div>
         </article>
 
-        <article class="mini-card" aria-labelledby="p8-title">
+        <article class="mini-card" aria-labelledby="p8-title" data-repo="dokumenhilangid-blip/Sinyal">
           <div class="card-top">
             <p class="status"><span class="status-dot" aria-hidden="true"></span>Functional prototype — deployment unknown</p>
             <span class="card-index" aria-hidden="true">08</span>
@@ -1201,7 +1323,7 @@ function execute(prog, input) {
           </div>
         </article>
 
-        <article class="mini-card" aria-labelledby="p9-title">
+        <article class="mini-card" aria-labelledby="p9-title" data-repo="theandroidaiarchitect-dev/cookie-cookbook">
           <div class="card-top">
             <p class="status"><span class="status-dot" aria-hidden="true"></span>Functional prototype</p>
             <span class="card-index" aria-hidden="true">09</span>
@@ -1213,7 +1335,7 @@ function execute(prog, input) {
             <a href="https://github.com/theandroidaiarchitect-dev/cookie-cookbook" target="_blank" rel="noopener noreferrer">Repository <span aria-hidden="true">↗</span></a>
           </div>
         </article>
-        <article class="mini-card" aria-labelledby="p10-title">
+        <article class="mini-card" aria-labelledby="p10-title" data-repo="BaraGitDoodle-bit/form-to-telegram-kit">
           <div class="card-top">
             <p class="status"><span class="status-dot" aria-hidden="true"></span>Functional prototype</p>
             <span class="card-index" aria-hidden="true">10</span>
