@@ -1,572 +1,1155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nur Toha Mubarak — AI Systems Builder</title>
-<meta name="description" content="Nur Toha Mubarak, AI Systems Builder in Jakarta Utara, Indonesia. Automation, digital products and AI systems built end to end with an AI copilot.">
+<meta name="description" content="Portfolio of Nur Toha Mubarak, an AI Systems Builder and Digital Product Developer in Jakarta Utara, Indonesia.">
+<meta name="theme-color" content="#FBF8F2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
   :root {
     --ivory: #FBF8F2;
     --ink: #171310;
     --accent: #C65B37;
-    --line: #E6DFD3;
     --card: #FFFFFF;
-    --muted: #5F574D;
-    --radius: 20px;
-    --max: 1080px;
-    --shadow: 0 1px 2px rgba(23, 19, 16, 0.04), 0 12px 32px -18px rgba(23, 19, 16, 0.22);
+    --hairline: #E6DFD3;
+    --muted: #5F574E;
+    --soft: #6B6157;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   }
 
-  * { box-sizing: border-box; }
+  *, *::before, *::after { box-sizing: border-box; }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
 
   body {
     margin: 0;
     background: var(--ivory);
     color: var(--ink);
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 17px;
-    line-height: 1.62;
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-wrap: break-word;
   }
 
-  img { display: block; max-width: 100%; }
+  img, svg { max-width: 100%; }
+
   a { color: inherit; }
 
-  a:focus-visible {
-    outline: 2px solid var(--accent);
+  a:focus-visible,
+  button:focus-visible {
+    outline: 3px solid var(--accent);
     outline-offset: 3px;
-    border-radius: 4px;
   }
 
-  .skip {
-    position: absolute;
-    left: 12px;
-    top: 12px;
-    transform: translateY(-160%);
-    background: var(--ink);
-    color: var(--ivory);
-    padding: 10px 16px;
-    z-index: 50;
-    font-weight: 500;
+  ::selection {
+    background: var(--accent);
+    color: #FFFFFF;
   }
-  .skip:focus { transform: translateY(0); }
 
   .wrap {
-    max-width: var(--max);
+    width: 100%;
+    max-width: 1080px;
     margin: 0 auto;
-    padding: 0 22px;
+    padding: 0 28px;
   }
 
-  .site-head { border-bottom: 1px solid var(--line); }
-  .site-head .wrap {
+  .skip-link {
+    position: absolute;
+    left: 16px;
+    top: -70px;
+    z-index: 100;
+    padding: 10px 14px;
+    background: var(--ink);
+    color: var(--ivory);
+    text-decoration: none;
+    border-radius: 2px;
+  }
+
+  .skip-link:focus { top: 12px; }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--ivory);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-height: 64px;
+  }
+
+  .wordmark {
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .nav-list a {
+    font-size: 0.84rem;
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .nav-list a:hover {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 4px;
+  }
+
+  .hero {
+    padding: 72px 0 88px;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 330px;
+    grid-template-areas:
+      "head media"
+      "body media";
+    column-gap: 64px;
+    row-gap: 30px;
+    align-items: start;
+  }
+
+  .hero-head { grid-area: head; min-width: 0; }
+  .hero-body { grid-area: body; min-width: 0; }
+  .hero-media { grid-area: media; margin: 0; min-width: 0; }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 20px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .eyebrow-bar {
+    display: inline-block;
+    width: 22px;
+    height: 1px;
+    background: var(--accent);
+    flex: 0 0 auto;
+  }
+
+  h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.75rem, 6vw, 4.4rem);
+    font-weight: 600;
+    line-height: 1.03;
+    letter-spacing: -0.035em;
+  }
+
+  .positioning {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.7;
+    letter-spacing: 0.035em;
+    color: var(--muted);
+    max-width: 46ch;
+  }
+
+  .lede {
+    margin: 0 0 28px;
+    max-width: 58ch;
+    font-size: 1.0625rem;
+    line-height: 1.72;
+    color: #3F382F;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 22px;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 18px;
+    border: 1px solid var(--ink);
+    border-radius: 2px;
+    background: var(--ink);
+    color: var(--ivory);
+    font-family: var(--sans);
+    font-size: 0.83rem;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+    transition: background-color 160ms ease, color 160ms ease;
+  }
+
+  .button:hover {
+    background: var(--ivory);
+    color: var(--ink);
+  }
+
+  .text-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+
+  .text-link:hover { text-decoration-thickness: 2px; }
+
+  .hero-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 4.3;
+    object-fit: cover;
+    object-position: center 12%;
+    border: 1px solid var(--hairline);
+    background: var(--hairline);
+  }
+
+  .hero-media figcaption,
+  figcaption {
+    margin-top: 9px;
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--soft);
+  }
+
+  .section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .section-head {
+    display: grid;
+    gap: 14px;
+    max-width: 760px;
+    margin-bottom: 42px;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .section-label::before {
+    content: "";
+    display: inline-block;
+    width: 22px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(1.85rem, 3.5vw, 2.6rem);
+    font-weight: 600;
+    line-height: 1.14;
+    letter-spacing: -0.028em;
+  }
+
+  .section-intro {
+    margin: 0;
+    max-width: 62ch;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 30px;
+    background: var(--card);
+    border: 1px solid var(--hairline);
+    border-radius: 3px;
+    transition: border-color 160ms ease;
+  }
+
+  .card:hover { border-color: #C9BFAE; }
+
+  .card-wide { grid-column: 1 / -1; }
+
+  .card-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    min-height: 64px;
-    flex-wrap: wrap;
+    margin-bottom: 14px;
   }
-  .mark {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 13px;
-    letter-spacing: 0.04em;
-    text-decoration: none;
-  }
-  .site-head nav { display: flex; gap: 20px; }
-  .site-head nav a { font-size: 14.5px; color: var(--muted); text-decoration: none; }
-  .site-head nav a:hover { color: var(--accent); }
 
-  .accent { color: var(--accent); }
-
-  .hero { padding: 60px 0 40px; }
-  .hero .grid { display: grid; gap: 40px; align-items: center; }
-  .hero h1 {
-    font-size: clamp(2.1rem, 6.2vw, 3.5rem);
-    line-height: 1.04;
-    letter-spacing: -0.025em;
-    margin: 0 0 14px;
-    font-weight: 600;
-  }
-  .hero .positioning {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 14.5px;
-    color: var(--accent);
-    letter-spacing: 0.01em;
-    margin: 0 0 18px;
-  }
-  .hero p { max-width: 52ch; color: var(--muted); margin: 0 0 26px; }
-
-  .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-  .btn {
-    display: inline-flex;
+  .status {
+    display: flex;
     align-items: center;
-    gap: 9px;
-    padding: 12px 20px;
-    border-radius: 999px;
-    font-weight: 500;
-    font-size: 15px;
-    text-decoration: none;
-    border: 1px solid transparent;
-  }
-  .btn-primary { background: var(--accent); color: #fff; box-shadow: var(--shadow); }
-  .btn-primary:hover { background: #A94A2B; }
-  .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
-  .btn-ghost:hover { border-color: var(--ink); }
-
-  .portrait {
-    max-width: 380px;
-    margin: 0 auto;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    background: var(--line);
-  }
-  .portrait img { width: 100%; aspect-ratio: 4 / 4.3; object-fit: cover; object-position: center 12%; }
-
-  section { padding: 46px 0; scroll-margin-top: 76px; }
-
-  h2 {
-    font-size: clamp(1.45rem, 3.4vw, 1.9rem);
-    letter-spacing: -0.02em;
-    margin: 0 0 6px;
-    font-weight: 600;
-    line-height: 1.18;
-  }
-  .lede { color: var(--muted); margin: 0 0 26px; max-width: 60ch; }
-
-  .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
+    gap: 8px;
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    line-height: 1.5;
+    letter-spacing: 0.015em;
+    color: var(--ink);
   }
 
-  .visual { background: #F3EEE5; border-bottom: 1px solid var(--line); }
-  .visual img { width: 100%; height: auto; }
-
-  .featured .card-body { padding: 30px 30px 32px; }
-  .featured h3 {
-    font-size: clamp(1.35rem, 3vw, 1.7rem);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    margin: 0 0 4px;
-    font-weight: 600;
-    max-width: 22ch;
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex: 0 0 auto;
   }
-  .featured .tagline {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: clamp(0.95rem, 2.2vw, 1.1rem);
-    color: var(--accent);
-    letter-spacing: 0.01em;
+
+  .card-index {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    color: #8A8175;
+  }
+
+  h3 {
     margin: 0 0 12px;
+    font-size: 1.55rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.022em;
   }
-  .featured .desc { color: var(--muted); margin: 0 0 22px; max-width: 62ch; }
+
+  .card-desc {
+    margin: 0 0 18px;
+    font-size: 0.95rem;
+    line-height: 1.72;
+    color: #3F382F;
+  }
 
   .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin: 0 0 22px;
+    gap: 7px;
+    margin: 0 0 24px;
     padding: 0;
     list-style: none;
   }
+
   .tags li {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 12.5px;
+    padding: 4px 8px;
+    background: var(--ivory);
+    border: 1px solid var(--hairline);
+    border-radius: 2px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
     color: var(--muted);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 5px 11px;
-    background: #fff;
   }
 
-  .links {
+  .shot { margin: 0 0 24px; }
+
+  .shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--hairline);
+    background: #F4EFE6;
+  }
+
+  .diagram {
+    margin: 0 0 24px;
+    padding: 14px;
+    background: var(--ivory);
+    border: 1px solid var(--hairline);
+  }
+
+  .diagram svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .visual-stack .diagram { max-width: 680px; margin-left: auto; margin-right: auto; }
+
+  .note {
+    margin: 0 0 20px;
+    padding-left: 12px;
+    border-left: 2px solid var(--accent);
+    font-size: 0.84rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  .note strong { color: var(--ink); font-weight: 600; }
+
+  .note + .note { margin-top: -8px; }
+
+  .card-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 18px;
-    margin: 0;
-    padding: 18px 0 0;
-    border-top: 1px solid var(--line);
-    font-size: 15px;
-  }
-  .links a {
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    padding-bottom: 1px;
-  }
-  .links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
-  .links .primary {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 13px;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    gap: 10px 20px;
+    margin-top: auto;
+    padding-top: 18px;
+    border-top: 1px solid var(--hairline);
   }
 
-  .grid2 { display: grid; gap: 22px; }
-
-  .proj .card-body {
-    display: flex;
-    flex-direction: column;
-    padding: 24px 24px 0;
-    height: 100%;
-  }
-  .proj h3 { font-size: 1.22rem; letter-spacing: -0.01em; margin: 0 0 6px; font-weight: 600; }
-  .proj .p-desc { color: var(--muted); font-size: 15.5px; margin: 0 0 14px; }
-  .proj .status { font-size: 14px; color: var(--ink); margin: 0 0 4px; }
-  .proj .status::before {
-    content: "";
-    display: inline-block;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--accent);
-    margin-right: 8px;
-    vertical-align: 1px;
-  }
-  .proj .links { margin-top: auto; padding: 18px 0 22px; }
-
-  .flow { padding: 34px 22px; text-align: center; }
-  .flow .stage {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2px;
-    padding: 14px 18px;
-    border-radius: 12px;
-    border: 1px solid var(--line);
-    background: #fff;
-    box-shadow: 0 1px 1px rgba(23, 19, 16, 0.03);
-    font-size: 14px;
+  .card-links a,
+  .mini-foot a {
+    font-size: 0.85rem;
     font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
   }
-  .flow .arrow { color: var(--accent); font-size: 16px; line-height: 1; padding: 3px 0; }
-  .flow .result {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 13px;
-    color: var(--muted);
-    margin: 18px 0 0;
-    letter-spacing: 0.02em;
-  }
-  .flow .result strong { color: var(--ink); font-weight: 500; }
 
-  .kaggle {
+  .card-links a:hover,
+  .mini-foot a:hover { border-bottom-color: var(--ink); }
+
+  .card-split {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 40px;
+    align-items: start;
+  }
+
+  .split-main { min-width: 0; }
+
+  .code-figure {
+    margin: 0;
+    min-width: 0;
+    background: var(--ink);
+    border: 1px solid var(--ink);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .code-figure pre {
+    margin: 0;
+    padding: 18px;
+    overflow-x: auto;
+    background: var(--ink);
+    color: #F1E9DC;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.65;
+    tab-size: 2;
+  }
+
+  .code-figure code {
+    font-family: inherit;
+    font-size: inherit;
+    white-space: pre;
+  }
+
+  .code-figure figcaption {
+    margin: 0;
+    padding: 0 18px 14px;
+    background: var(--ink);
+    color: #B9AD9A;
+  }
+
+  .mini-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .mini-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 24px;
+    background: var(--card);
+    border: 1px solid var(--hairline);
+    border-radius: 3px;
+    transition: border-color 160ms ease;
+  }
+
+  .mini-card:hover { border-color: #C9BFAE; }
+
+  .mini-card h3 { font-size: 1.15rem; margin-bottom: 10px; }
+
+  .mini-desc {
+    margin: 0 0 14px;
+    font-size: 0.875rem;
+    line-height: 1.68;
+    color: #3F382F;
+  }
+
+  .mini-note {
+    margin: 0 0 16px;
+    border-left-color: var(--hairline);
+    font-size: 0.8rem;
+  }
+
+  .mini-foot {
     display: flex;
     flex-wrap: wrap;
-    gap: 22px;
-    align-items: stretch;
-    justify-content: space-between;
+    gap: 8px 16px;
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid var(--hairline);
+    font-size: 0.8rem;
   }
-  .kaggle .scores { flex: 1 1 300px; max-width: 420px; }
-  .kaggle .score {
+
+  .mini-foot p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.6;
+  }
+
+  .research-list {
+    display: grid;
+    gap: 10px;
+    margin: 0 0 14px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .research-list li {
+    padding-left: 10px;
+    border-left: 2px solid var(--hairline);
+    font-size: 0.84rem;
+    line-height: 1.65;
+    color: #3F382F;
+  }
+
+  .research-list strong { font-weight: 600; }
+
+  .security-line {
+    margin: 16px 0 0;
+    padding-top: 12px;
+    border-top: 1px dashed #CFC4B2;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 64px;
+    align-items: start;
+  }
+
+  .about-copy p {
+    margin: 0;
+    max-width: 64ch;
+    font-size: 1rem;
+    line-height: 1.78;
+    color: #3F382F;
+  }
+
+  .about-copy p + p { margin-top: 18px; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 64px;
+    align-items: start;
+  }
+
+  .contact-lead {
+    margin: 18px 0 26px;
+    max-width: 34ch;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  .contact-links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+  }
+
+  .contact-links a {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    gap: 16px;
-    padding: 15px 18px;
-    border-bottom: 1px solid var(--line);
-  }
-  .kaggle .score:last-child { border-bottom: 0; }
-  .kaggle .score .name { font-weight: 500; font-size: 16px; }
-  .kaggle .score .val {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 15px;
-    color: var(--accent);
-    white-space: nowrap;
-  }
-  .disclosure {
-    flex: 1 1 260px;
-    max-width: 360px;
-    padding: 20px 22px;
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    color: var(--muted);
-    font-size: 15px;
-    align-self: center;
+    gap: 18px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--hairline);
+    font-size: 0.92rem;
+    text-decoration: none;
   }
 
-  .entries { display: grid; gap: 20px; }
-  .entry {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    box-shadow: var(--shadow);
-    padding: 22px 24px;
+  .contact-links a:hover {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 4px;
   }
-  .entry h3 { font-size: 1.08rem; margin: 0 0 2px; font-weight: 600; }
-  .entry .org { color: var(--muted); font-size: 15px; margin: 0 0 8px; }
-  .entry .when {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 12.5px;
-    color: var(--accent);
-    letter-spacing: 0.02em;
-    margin: 0 0 10px;
-  }
-  .entry p { margin: 0; font-size: 15.5px; color: var(--muted); }
 
-  .contact {
-    background: var(--card);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    padding: 56px 0 40px;
+  .contact-links .arrow {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--soft);
   }
-  .contact h2 { max-width: 18ch; }
-  .contact .actions { margin: 24px 0 30px; }
-  .contact .links-inline {
+
+  .site-footer { padding: 28px 0; }
+
+  .footer-inner {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px 22px;
-    list-style: none;
-    margin: 0;
-    padding: 22px 0 0;
-    border-top: 1px solid var(--line);
-    font-size: 15px;
-  }
-  .contact .links-inline a { text-decoration: none; border-bottom: 1px solid transparent; }
-  .contact .links-inline a:hover { color: var(--accent); border-bottom-color: var(--accent); }
-
-  footer { padding: 26px 0 40px; color: var(--muted); font-size: 14px; }
-  footer .wrap {
-    display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
-    gap: 8px 16px;
+    gap: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    color: var(--muted);
   }
 
-  @media (min-width: 768px) {
-    body { font-size: 18px; }
-    .hero { padding: 84px 0 52px; }
-    .hero .grid { grid-template-columns: 1.35fr 1fr; gap: 56px; }
-    .portrait { margin: 0; }
-    section { padding: 62px 0; }
+  .footer-inner p { margin: 0; }
+
+  @media (max-width: 960px) {
+    .hero-grid {
+      grid-template-columns: minmax(0, 1fr) 300px;
+      column-gap: 40px;
+    }
+    .hero { padding: 56px 0 64px; }
+    .mini-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 860px) {
+    .work-grid { grid-template-columns: minmax(0, 1fr); }
+    .card-wide { grid-column: auto; }
+    .card-split { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    .about-grid,
+    .contact-grid { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+    .section { padding: 60px 0; }
+  }
+
+  @media (max-width: 720px) {
+    .hero-grid {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: "head" "media" "body";
+      row-gap: 28px;
+    }
+    .hero-media { max-width: 290px; }
   }
 
   @media (max-width: 640px) {
     .wrap { padding: 0 20px; }
-    .hero { padding: 40px 0 24px; }
-    .hero .grid { gap: 28px; }
-    .portrait { max-width: 290px; }
-    .featured .card-body { padding: 24px 20px 26px; }
-    .proj .card-body { padding: 20px 18px 0; }
-    .flow { padding: 26px 16px; }
-    .flow .row { flex-direction: column; }
-    .flow .arrow { transform: rotate(90deg); padding: 1px 0; }
-  }
-
-  @media (min-width: 768px) {
-    .grid2 { grid-template-columns: 1fr 1fr; }
+    .nav-list { display: none; }
+    .hero { padding: 40px 0 48px; }
+    h1 { font-size: clamp(2.5rem, 12vw, 3.2rem); }
+    .hero-media { width: 100%; max-width: 290px; }
+    .section { padding: 52px 0; }
+    .section-head { margin-bottom: 32px; }
+    .card { padding: 22px; }
+    .card-split { gap: 22px; }
+    .diagram { padding: 10px; }
+    .mini-grid { grid-template-columns: minmax(0, 1fr); }
+    .mini-card { padding: 22px; }
+    .code-figure pre { padding: 14px; font-size: 11px; }
+    .code-figure figcaption { padding: 0 14px 12px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 4px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    * { transition: none !important; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 </style>
 </head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
-
-<header class="site-head">
-  <div class="wrap">
-    <a class="mark" href="#top" aria-label="Back to top">NUR TOHA MUBARAK</a>
-    <nav aria-label="Sections">
-      <a href="#work">Work</a>
-      <a href="#background">Background</a>
-      <a href="#contact">Contact</a>
+<body id="top">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="wordmark" href="#top">Nur Toha Mubarak</a>
+    <nav aria-label="Primary">
+      <ul class="nav-list">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#systems">Systems</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </nav>
   </div>
 </header>
 
 <main id="main">
-  <section class="hero" id="top">
-    <div class="wrap grid">
-      <div>
-        <h1>Nur Toha Mubarak</h1>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div class="hero-head">
+        <p class="eyebrow"><span class="eyebrow-bar" aria-hidden="true"></span>Jakarta Utara, Indonesia</p>
+        <h1 id="hero-title">Nur Toha Mubarak</h1>
         <p class="positioning">AI Systems Builder · Automation &amp; Digital Product Development</p>
-        <p>I build practical software end to end with an AI copilot — from idea and implementation through deployment and submission — exploring intelligent systems and digital products through hands-on experimentation.</p>
-        <div class="row">
-          <a class="btn btn-primary" href="#work">Featured project</a>
-          <a class="btn btn-ghost" href="https://github.com/BaraGitDoodle-bit" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+      <div class="hero-body">
+        <p class="lede">I build practical software end to end with an AI copilot — AI-powered applications, agent infrastructure, automation, and developer tools — and ship real systems: a routing engine with tests and a live deployment, a platform game inside Reddit, a mobile monitor with an honest data layer, a minimal virtual machine, and a vision-analysis prototype with designed fallbacks.</p>
+        <div class="hero-actions">
+          <a class="button" href="#work">View selected work</a>
+          <a class="text-link" href="https://github.com/BaraGitDoodle-bit" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
         </div>
       </div>
-      <div class="portrait">
-        <img src="portrait.jpg" alt="Portrait of Nur Toha Mubarak" width="720" height="720">
-      </div>
+      <figure class="hero-media">
+        <img src="portrait.jpg" alt="Portrait of Nur Toha Mubarak." width="640" height="640" fetchpriority="high">
+        <figcaption>Nur Toha Mubarak · Jakarta Utara</figcaption>
+      </figure>
     </div>
   </section>
 
-  <section id="work" aria-labelledby="work-title">
+  <section class="section" id="work" aria-labelledby="work-title">
     <div class="wrap">
-      <h2 id="work-title">Work</h2>
-      <p class="lede">Selected projects and how they are built.</p>
+      <div class="section-head">
+        <p class="section-label">01 / Selected work</p>
+        <h2 id="work-title">Systems built, with their limits stated.</h2>
+        <p class="section-intro">Five projects, each presented at the scale the evidence supports.</p>
+      </div>
 
-      <article class="card featured" aria-labelledby="nlc-title">
-        <div class="visual">
-          <svg viewBox="0 0 1000 320" role="img" aria-labelledby="nlc-desc">
-            <title id="nlc-desc">Diagram of the NanoOrCloud routing flow: a task prompt goes to Gemini Nano on-device and to cloud AI, a router picks one answer per task, and the result feeds a monthly savings projection.</title>
-            <rect x="14" y="14" width="972" height="292" rx="16" fill="#FCFBF8" stroke="#E6DFD3"/>
-            <g font-family="Inter, sans-serif" font-size="14">
-              <rect x="34" y="132" width="150" height="62" rx="12" fill="#fff" stroke="#E6DFD3"/>
-              <text x="109" y="158" text-anchor="middle" fill="#171310" font-weight="600">Task prompt</text>
-              <text x="109" y="178" text-anchor="middle" fill="#5F574D" font-size="12">your request</text>
-
-              <rect x="240" y="30" width="180" height="66" rx="12" fill="#fff" stroke="#E6DFD3"/>
-              <text x="330" y="56" text-anchor="middle" fill="#171310" font-weight="600">Gemini Nano</text>
-              <text x="330" y="76" text-anchor="middle" fill="#5F574D" font-size="12">on-device</text>
-
-              <rect x="240" y="226" width="180" height="66" rx="12" fill="#fff" stroke="#E6DFD3"/>
-              <text x="330" y="252" text-anchor="middle" fill="#171310" font-weight="600">Cloud AI</text>
-              <text x="330" y="272" text-anchor="middle" fill="#5F574D" font-size="12">Gemini</text>
-
-              <rect x="470" y="132" width="180" height="62" rx="12" fill="#fff" stroke="#E6DFD3"/>
-              <text x="560" y="156" text-anchor="middle" fill="#171310" font-weight="600">Per-task routing</text>
-              <text x="560" y="176" text-anchor="middle" fill="#5F574D" font-size="12">pick one answer</text>
-
-              <rect x="706" y="132" width="170" height="62" rx="12" fill="#FBF1EA" stroke="#E6C7B2"/>
-              <text x="791" y="158" text-anchor="middle" fill="#171310" font-weight="600">Savings projection</text>
-              <text x="791" y="178" text-anchor="middle" fill="#5F574D" font-size="12">per month</text>
-
-              <line x1="184" y1="163" x2="234" y2="86" stroke="#C65B37" stroke-width="2"/>
-              <polygon points="238,80 246,82 238,94" fill="#C65B37"/>
-              <line x1="184" y1="163" x2="234" y2="278" stroke="#C65B37" stroke-width="2"/>
-              <polygon points="238,284 246,284 238,272" fill="#C65B37"/>
-              <line x1="426" y1="80" x2="554" y2="154" stroke="#B9AE9E" stroke-width="2"/>
-              <polygon points="558,151 552,160 548,148" fill="#B9AE9E"/>
-              <line x1="426" y1="270" x2="554" y2="170" stroke="#B9AE9E" stroke-width="2"/>
-              <polygon points="558,171 552,180 548,170" fill="#B9AE9E"/>
-              <line x1="656" y1="163" x2="700" y2="163" stroke="#C65B37" stroke-width="2"/>
-              <polygon points="704,163 714,163 708,157" fill="#C65B37"/>
-            </g>
-          </svg>
-        </div>
-        <div class="card-body">
-          <h3 id="nlc-title">NanoOrCloud</h3>
-          <p class="tagline">Stop guessing when to use on-device AI.</p>
-          <p class="desc">NanoOrCloud runs a task prompt on Gemini Nano and cloud AI side by side, providing per-task routing and a monthly savings projection, with TypeScript and JSON export.</p>
-          <ul class="tags">
-            <li>Vite</li><li>React</li><li>TypeScript</li><li>Firebase AI Logic</li><li>Gemini Nano</li>
+      <div class="work-grid">
+        <article class="card card-wide" aria-labelledby="p1-title">
+          <div class="card-top">
+            <p class="status"><span class="status-dot" aria-hidden="true"></span>Deployed MVP</p>
+            <span class="card-index" aria-hidden="true">01</span>
+          </div>
+          <h3 id="p1-title">NanoOrCloud</h3>
+          <p class="card-desc">A web app that runs the same task prompt on Gemini Nano and on cloud AI side by side, scores both runs, recommends a route per task, projects monthly savings from routing, and exports the result as a report/JSON. A sample mode lets visitors try it without keys.</p>
+          <ul class="tags" aria-label="NanoOrCloud stack">
+            <li>Vite</li>
+            <li>React</li>
+            <li>TypeScript</li>
+            <li>Firebase AI Logic</li>
           </ul>
-          <ul class="links">
-            <li><a class="primary" href="https://offrecord-4161f.web.app" target="_blank" rel="noopener noreferrer">Live application</a></li>
-            <li><a href="https://github.com/BaraGitDoodle-bit/nanoorcloud" target="_blank" rel="noopener noreferrer">Repository</a></li>
-            <li><a href="https://devpost.com/software/nanoorcloud" target="_blank" rel="noopener noreferrer">Devpost</a></li>
-            <li><a href="https://www.youtube.com/watch?v=FkcT_pua0Qg" target="_blank" rel="noopener noreferrer">Demo video</a></li>
+          <div class="visual-stack">
+            <figure class="shot">
+              <img src="nano-shot.jpg" alt="Frame from the NanoOrCloud demo video showing the running application's sample report view." width="1280" height="490">
+              <figcaption>Running application — sample report view, frame from the demo video.</figcaption>
+            </figure>
+            <figure class="diagram">
+              <svg viewBox="0 0 400 440" role="img" aria-labelledby="nano-diagram-title nano-diagram-desc" xmlns="http://www.w3.org/2000/svg">
+                <title id="nano-diagram-title">NanoOrCloud routing flow diagram</title>
+                <desc id="nano-diagram-desc">A task prompt is sent to Gemini Nano and cloud AI, then to per-task routing, then to a monthly savings projection.</desc>
+                <defs>
+                  <marker id="nano-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M0,0 L10,5 L0,10 z" fill="#6B6157"></path>
+                  </marker>
+                </defs>
+                <g font-family="Inter, sans-serif" font-size="18" fill="#171310" text-anchor="middle">
+                  <rect x="80" y="20" width="240" height="58" rx="2" fill="#FFFFFF" stroke="#CFC4B2"></rect>
+                  <text x="200" y="56">Task prompt</text>
+                  <line x1="200" y1="78" x2="200" y2="102" stroke="#6B6157" stroke-width="1.5" marker-end="url(#nano-arrow)"></line>
+                  <path d="M200 102 H95 V126" fill="none" stroke="#6B6157" stroke-width="1.5" marker-end="url(#nano-arrow)"></path>
+                  <path d="M200 102 H305 V126" fill="none" stroke="#6B6157" stroke-width="1.5" marker-end="url(#nano-arrow)"></path>
+                  <rect x="20" y="126" width="150" height="62" rx="2" fill="#FFFFFF" stroke="#CFC4B2"></rect>
+                  <text x="95" y="163">Gemini Nano</text>
+                  <rect x="230" y="126" width="150" height="62" rx="2" fill="#FFFFFF" stroke="#CFC4B2"></rect>
+                  <text x="305" y="163">Cloud AI</text>
+                  <path d="M95 188 V212 H200 V244" fill="none" stroke="#6B6157" stroke-width="1.5" marker-end="url(#nano-arrow)"></path>
+                  <path d="M305 188 V212 H200" fill="none" stroke="#6B6157" stroke-width="1.5"></path>
+                  <rect x="75" y="244" width="250" height="62" rx="2" fill="#FFFFFF" stroke="#CFC4B2"></rect>
+                  <text x="200" y="281">Per-task routing</text>
+                  <line x1="200" y1="306" x2="200" y2="338" stroke="#6B6157" stroke-width="1.5" marker-end="url(#nano-arrow)"></line>
+                  <rect x="60" y="338" width="280" height="66" rx="2" fill="#FFFFFF" stroke="#C65B37"></rect>
+                  <text x="200" y="377">Monthly savings projection</text>
+                </g>
+              </svg>
+              <figcaption>Routing flow diagram.</figcaption>
+            </figure>
+          </div>
+          <p class="note"><strong>Note:</strong> On-device path depends on the browser exposing Gemini Nano.</p>
+          <div class="card-links">
+            <a href="https://offrecord-4161f.web.app" target="_blank" rel="noopener noreferrer">Live application <span aria-hidden="true">↗</span></a>
+            <a href="https://github.com/BaraGitDoodle-bit/nanoorcloud" target="_blank" rel="noopener noreferrer">Repository <span aria-hidden="true">↗</span></a>
+            <a href="https://devpost.com/software/nanoorcloud" target="_blank" rel="noopener noreferrer">Devpost <span aria-hidden="true">↗</span></a>
+            <a href="https://www.youtube.com/watch?v=FkcT_pua0Qg" target="_blank" rel="noopener noreferrer">Demo video <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="card" aria-labelledby="p2-title">
+          <div class="card-top">
+            <p class="status"><span class="status-dot" aria-hidden="true"></span>Deployed MVP</p>
+            <span class="card-index" aria-hidden="true">02</span>
+          </div>
+          <h3 id="p2-title">Daily Drift</h3>
+          <p class="card-desc">A daily text-adventure game that lives inside Reddit as a Devvit app, with a fresh explorable sector each day — a client game, a server handling the daily rotation, and a plain-JavaScript prototype carrying the same game modules.</p>
+          <ul class="tags" aria-label="Daily Drift stack">
+            <li>Devvit</li>
+            <li>JavaScript</li>
           </ul>
-        </div>
-      </article>
-
-      <div class="grid2" id="projects-grid" style="margin-top: 22px;">
-        <article class="card proj" aria-labelledby="drift-title">
-          <div class="visual">
-            <img src="drift-thumb.jpg" alt="Daily Drift gameplay still: an in-game scene of the Reddit text-adventure." width="1280" height="720">
-          </div>
-          <div class="card-body">
-            <h3 id="drift-title">Daily Drift</h3>
-            <p class="p-desc">A daily text-adventure game built around interactive storytelling on Reddit — a new sector to explore every day.</p>
-            <ul class="tags">
-              <li>Interactive game</li><li>Reddit</li><li>Text adventure</li>
-            </ul>
-            <div class="links">
-              <a href="https://devpost.com/software/daily-drift" target="_blank" rel="noopener noreferrer">Devpost</a>
-              <a href="https://www.youtube.com/watch?v=uMGrd2d8CZQ" target="_blank" rel="noopener noreferrer">Demo video</a>
-              <a href="https://www.reddit.com/r/daily_drift_game/" target="_blank" rel="noopener noreferrer">Subreddit</a>
-            </div>
+          <figure class="shot">
+            <img src="drift-thumb.jpg" alt="Daily Drift gameplay still from the demo video." width="1280" height="720">
+            <figcaption>Gameplay still from the demo video.</figcaption>
+          </figure>
+          <p class="note">No public repository — code held locally.</p>
+          <div class="card-links">
+            <a href="https://devpost.com/software/daily-drift" target="_blank" rel="noopener noreferrer">Devpost <span aria-hidden="true">↗</span></a>
+            <a href="https://www.youtube.com/watch?v=uMGrd2d8CZQ" target="_blank" rel="noopener noreferrer">Demo video <span aria-hidden="true">↗</span></a>
+            <a href="https://www.reddit.com/r/daily_drift_game/" target="_blank" rel="noopener noreferrer">Subreddit <span aria-hidden="true">↗</span></a>
           </div>
         </article>
 
-        <article class="card proj" aria-labelledby="vm-title">
-          <div class="visual">
-            <div class="flow">
-              <p class="flow-label" style="font-size: 11px; font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 16px;">Stack machine · 3 + 2</p>
-              <div class="stage">Push 3</div>
-              <div class="arrow" aria-hidden="true">↓</div>
-              <div class="stage">Push 2</div>
-              <div class="arrow" aria-hidden="true">↓</div>
-              <div class="stage">Add</div>
-              <div class="arrow" aria-hidden="true">↓</div>
-              <div class="stage">Result <span class="mono" style="font-size: 12.5px; color: var(--muted);">on the stack</span></div>
-              <p class="result">Result: <strong>5</strong></p>
-            </div>
+        <article class="card" aria-labelledby="p3-title">
+          <div class="card-top">
+            <p class="status"><span class="status-dot" aria-hidden="true"></span>Functional prototype — deployment unknown</p>
+            <span class="card-index" aria-hidden="true">03</span>
           </div>
-          <div class="card-body">
-            <h3 id="vm-title">tiny-stack-vm</h3>
-            <p class="p-desc">A tiny stack-based virtual machine interpreter implemented in TypeScript, built without external dependencies.</p>
-            <ul class="tags">
-              <li>TypeScript</li><li>Interpreter</li><li>Zero dependencies</li>
-            </ul>
-            <p class="status">Submitted — awaiting grading.</p>
-            <div class="links">
-              <a href="https://github.com/BaraGitDoodle-bit/tiny-stack-vm" target="_blank" rel="noopener noreferrer">Repository</a>
+          <h3 id="p3-title">pantau-app</h3>
+          <p class="card-desc">An offline-first personal monitor for Android — track prices, news, stocks, and schedules, with notes, themes, search, statistics, and cloud backup. An Expo Router app with a repository/context/hook data layer, local storage, and a Cloudflare Worker backed by a D1 database. Its live-data service returns no value for unrecognised monitors rather than a fabricated one.</p>
+          <ul class="tags" aria-label="pantau-app stack">
+            <li>TypeScript (Expo / React Native)</li>
+            <li>JavaScript worker</li>
+            <li>SQL (D1)</li>
+            <li>Cloudflare Worker</li>
+          </ul>
+          <figure class="diagram">
+            <svg viewBox="0 0 400 456" role="img" aria-labelledby="pantau-diagram-title pantau-diagram-desc" xmlns="http://www.w3.org/2000/svg">
+              <title id="pantau-diagram-title">pantau-app architecture diagram</title>
+              <desc id="pantau-diagram-desc">Expo Router screens feed a repository, context, and hook data layer, which connects to local storage and a Cloudflare Worker with a D1 database. An honest-fallback note says an unrecognised monitor returns no value rather than a fabricated one.</desc>
+              <defs>
+                <marker id="pantau-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M0,0 L10,5 L0,10 z" fill="#6B6157"></path>
+                </marker>
+              </defs>
+              <g font-family="Inter, sans-serif" font-size="17" fill="#171310" text-anchor="middle">
+                <rect x="55" y="18" width="290" height="56" rx="2" fill="#FFFFFF" stroke="#CFC4B2"></rect>
+                <text x="200" y="52">Expo Router screens</text>
+                <line x1="200" y1="74" x2="200" y2="98" stroke="#6B6157" stroke-width="1.5" marker-end="url(#pantau-arrow)"></line>
+                <rect x="20" y="98" width="360" height="56" rx="2" fill="#FFFFFF" stroke="#CFC4B2"></rect>
+                <text x="200" y="132">Repository / context / hook layer</text>
+                <path d="M200 154 V178 H102 V202" fill="none" stroke="#6B6157" stroke-width="1.5" marker-end="url(#pantau-arrow)"></path>
+                <path d="M200 178 H298 V202" fill="none" stroke="#6B6157" stroke-width="1.5" marker-end="url(#pantau-arrow)"></path>
+                <rect x="12" y="202" width="180" height="64" rx="2" fill="#FFFFFF" stroke="#CFC4B2"></rect>
+                <text x="102" y="230" font-size="16">Local storage</text>
+                <text x="102" y="250" font-size="15.5" fill="#5F574E">on-device</text>
+                <rect x="208" y="202" width="180" height="64" rx="2" fill="#FFFFFF" stroke="#CFC4B2"></rect>
+                <text x="298" y="230" font-size="16">Cloudflare Worker</text>
+                <text x="298" y="250" font-size="15.5" fill="#5F574E">+ D1 database</text>
+                <path d="M298 266 V322" fill="none" stroke="#8A9A7B" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#pantau-arrow)"></path>
+                <rect x="20" y="322" width="360" height="104" rx="2" fill="#FBF8F2" stroke="#8A9A7B" stroke-dasharray="4 4"></rect>
+                <text x="200" y="352" font-size="15.5" fill="#5F574E">Honest fallback</text>
+                <text x="200" y="380" font-size="16">Unrecognised monitor returns</text>
+                <text x="200" y="402" font-size="16">no value, never a fabricated one.</text>
+              </g>
+            </svg>
+            <figcaption>Architecture diagram (from the repository).</figcaption>
+          </figure>
+          <p class="note"><strong>Note:</strong> Deployment unknown — no verified APK, store listing, or live worker URL.</p>
+          <div class="card-links">
+            <a href="https://github.com/dokumenhilangid-blip/pantau-app" target="_blank" rel="noopener noreferrer">Repository <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="card card-wide" aria-labelledby="p4-title">
+          <div class="card-top">
+            <p class="status"><span class="status-dot" aria-hidden="true"></span>Functional prototype — submitted, grading unknown</p>
+            <span class="card-index" aria-hidden="true">04</span>
+          </div>
+          <h3 id="p4-title">tiny-stack-vm</h3>
+          <div class="card-split">
+            <div class="split-main">
+              <p class="card-desc">A minimal stack-based virtual machine interpreter built to a bounty specification (ISA v1) with no external dependencies. A single 6,550-byte TypeScript file: an opcode table, bounded stacks, memory, and output, a step cap, and a runner that executes input instances and writes per-instance output and exit files.</p>
+              <ul class="tags" aria-label="tiny-stack-vm stack">
+                <li>TypeScript</li>
+                <li>Node built-ins only</li>
+              </ul>
+              <figure class="diagram">
+                <svg viewBox="0 0 400 344" role="img" aria-labelledby="vm-diagram-title vm-diagram-desc" xmlns="http://www.w3.org/2000/svg">
+                  <title id="vm-diagram-title">Stack-machine flow diagram</title>
+                  <desc id="vm-diagram-desc">Push 3, then Push 2, then Add, produces Result 5. The stack holds 3, then 3 and 2, then 5.</desc>
+                  <defs>
+                    <marker id="vm-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                      <path d="M0,0 L10,5 L0,10 z" fill="#6B6157"></path>
+                    </marker>
+                  </defs>
+                  <g font-family="Inter, sans-serif" font-size="18" fill="#171310">
+                    <rect x="40" y="16" width="320" height="56" rx="2" fill="#FFFFFF" stroke="#CFC4B2"></rect>
+                    <text x="64" y="51">Push 3</text>
+                    <text x="336" y="51" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="14" fill="#5F574E">stack: 3</text>
+                    <line x1="200" y1="72" x2="200" y2="96" stroke="#6B6157" stroke-width="1.5" marker-end="url(#vm-arrow)"></line>
+                    <rect x="40" y="96" width="320" height="56" rx="2" fill="#FFFFFF" stroke="#CFC4B2"></rect>
+                    <text x="64" y="131">Push 2</text>
+                    <text x="336" y="131" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="14" fill="#5F574E">stack: 3, 2</text>
+                    <line x1="200" y1="152" x2="200" y2="176" stroke="#6B6157" stroke-width="1.5" marker-end="url(#vm-arrow)"></line>
+                    <rect x="40" y="176" width="320" height="56" rx="2" fill="#FFFFFF" stroke="#CFC4B2"></rect>
+                    <text x="64" y="211">Add</text>
+                    <text x="336" y="211" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="14" fill="#5F574E">stack: 5</text>
+                    <line x1="200" y1="232" x2="200" y2="256" stroke="#6B6157" stroke-width="1.5" marker-end="url(#vm-arrow)"></line>
+                    <rect x="40" y="256" width="320" height="56" rx="2" fill="#FFFFFF" stroke="#C65B37"></rect>
+                    <text x="64" y="291">Result 5</text>
+                    <text x="336" y="291" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="14" fill="#5F574E">output</text>
+                  </g>
+                </svg>
+                <figcaption>Stack-machine flow diagram.</figcaption>
+              </figure>
             </div>
+            <figure class="code-figure">
+              <pre><code>// Tiny stack VM (ISA v1): runs every instance in the input dir and writes
+// stdout.bin + exit.txt per instance in the output dir. Node built-ins only;
+// nothing but the input files is read, so reruns answer alike.
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+const IN = process.env.MAKEFUN_INPUT_DIR ?? '/input';
+const OUT = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
+
+// Opcode table: hex byte, immediate bytes, pops, pushes. -1 is no opcode.
+const IMM = new Int8Array(256).fill(-1);
+const POPS = new Uint8Array(256);
+const PUSH = new Uint8Array(256);
+for (const e of '00,0,0,0;01,1,0,1;02,4,0,1;03,0,1,0;04,0,1,2;05,0,2,2;06,0,2,3;07,0,3,3;10,0,2,1;11,0,2,1;12,0,2,1;13,0,2,1;14,0,2,1;15,0,2,1;16,0,2,1;17,0,1,1;18,0,2,1;19,0,2,1;1a,0,2,1;1b,0,1,1;1c,0,2,1;1d,0,2,1;1e,0,2,1;20,0,2,1;21,0,2,1;22,0,2,1;30,2,0,0;31,2,1,0;32,2,1,0;33,2,0,0;34,0,0,0;40,0,1,1;41,0,2,0;50,0,1,0;51,0,1,0;52,0,0,1;53,0,1,0'.split(';')) {
+  const [h, i, a, b] = e.split(',');
+  const o = parseInt(h, 16);
+  IMM[o] = +i;
+  POPS[o] = +a;
+  PUSH[o] = +b;
+}
+
+function execute(prog, input) {
+  const n = prog.length;
+  const st = new Int32Array(256);
+  const cs = new Int32Array(64);
+  const mem = new Int32Array(256);
+  const out = new Uint8Array(65536);
+  let sp = 0, cp = 0, olen = 0, inAt = 0, pc = 0, steps = 0;</code></pre>
+              <figcaption>Excerpt — lines 1–28 of main.ts (6,550 bytes total).</figcaption>
+            </figure>
+          </div>
+          <p class="note"><strong>Note:</strong> Minimal ISA, single file, empty README; grading outcome unknown.</p>
+          <div class="card-links">
+            <a href="https://github.com/BaraGitDoodle-bit/tiny-stack-vm" target="_blank" rel="noopener noreferrer">Repository <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="card card-wide" aria-labelledby="p5-title">
+          <div class="card-top">
+            <p class="status"><span class="status-dot" aria-hidden="true"></span>Functional prototype — deployment unknown</p>
+            <span class="card-index" aria-hidden="true">05</span>
+          </div>
+          <h3 id="p5-title">drift</h3>
+          <div class="card-split">
+            <div class="split-main">
+              <p class="card-desc">Turns phone screenshots into a short insight: an emotional profile, a chaos meter (0–1), an alter-ego line (max 80 characters), and a recap (max 200 characters). An upload zone, five insight components, and an API route that posts one uploaded image per request to Gemini (gemini-2.0-flash, 8-second timeout, key from environment). Cap: 5 screenshots per completed analysis. When no key is configured, or the model call fails, times out, or returns bad JSON, the app returns a hardcoded fallback insight with HTTP 200 and a "generated with care" badge instead of erroring.</p>
+              <ul class="tags" aria-label="drift stack">
+                <li>Next.js 15</li>
+                <li>React 19</li>
+                <li>Tailwind 4</li>
+                <li>Framer Motion 11</li>
+              </ul>
+              <p class="note"><strong>Note:</strong> Insight accuracy never exercised.</p>
+              <p class="note">A separate project from Daily Drift.</p>
+            </div>
+            <figure class="diagram">
+              <svg viewBox="0 0 400 560" role="img" aria-labelledby="drift-diagram-title drift-diagram-desc" xmlns="http://www.w3.org/2000/svg">
+                <title id="drift-diagram-title">drift architecture diagram</title>
+                <desc id="drift-diagram-desc">An upload zone sends one image per request to an API route, then to Gemini, then to five insight components. A dashed fallback path shows the app returning a fallback insight with HTTP 200 and a generated with care badge when no key is configured or the model call fails, times out, or returns bad JSON.</desc>
+                <defs>
+                  <marker id="drift-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M0,0 L10,5 L0,10 z" fill="#6B6157"></path>
+                  </marker>
+                  <marker id="drift-fallback-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M0,0 L10,5 L0,10 z" fill="#C65B37"></path>
+                  </marker>
+                </defs>
+                <rect x="0" y="0" width="400" height="560" fill="#F4EBDD" stroke="#D8C9B5"></rect>
+                <g font-family="Inter, sans-serif" fill="#171310" text-anchor="middle">
+                  <rect x="50" y="28" width="300" height="58" rx="2" fill="#EFE4D4" stroke="#B7A58F"></rect>
+                  <text x="200" y="64" font-size="19">Upload zone</text>
+                  <line x1="200" y1="86" x2="200" y2="106" stroke="#6B6157" stroke-width="1.5" marker-end="url(#drift-arrow)"></line>
+                  <rect x="50" y="106" width="300" height="66" rx="2" fill="#EFE4D4" stroke="#B7A58F"></rect>
+                  <text x="200" y="134" font-size="19">API route</text>
+                  <text x="200" y="157" font-size="15.5" fill="#5F574E">one image per request · 8s timeout</text>
+                  <line x1="200" y1="172" x2="200" y2="194" stroke="#6B6157" stroke-width="1.5" marker-end="url(#drift-arrow)"></line>
+                  <rect x="50" y="194" width="300" height="66" rx="2" fill="#EFE4D4" stroke="#B7A58F"></rect>
+                  <text x="200" y="222" font-size="19">Gemini</text>
+                  <text x="200" y="245" font-size="15.5" font-family="JetBrains Mono, monospace" fill="#5F574E">gemini-2.0-flash</text>
+                  <line x1="200" y1="260" x2="200" y2="282" stroke="#6B6157" stroke-width="1.5" marker-end="url(#drift-arrow)"></line>
+                  <rect x="20" y="282" width="360" height="88" rx="2" fill="#E7E9DF" stroke="#8A9A7B"></rect>
+                  <text x="200" y="313" font-size="18">Five insight components</text>
+                  <text x="200" y="339" font-size="15.5" fill="#3F4A38">profile · chaos meter · alter-ego · recap</text>
+                  <text x="200" y="358" font-size="15.5" fill="#5F6B55">max 80 / max 200 characters</text>
+                  <path d="M350 139 H382 V480 H380" fill="none" stroke="#C65B37" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#drift-fallback-arrow)"></path>
+                  <rect x="20" y="424" width="360" height="112" rx="2" fill="#F7F1E7" stroke="#C65B37" stroke-dasharray="4 4"></rect>
+                  <text x="200" y="454" font-size="17" fill="#9C4326" font-weight="600">Fallback insight</text>
+                  <text x="200" y="478" font-size="15.5">no key · failure · timeout · bad JSON</text>
+                  <text x="200" y="501" font-size="15.5">HTTP 200 · “generated with care” badge</text>
+                </g>
+              </svg>
+              <figcaption>Architecture diagram (from the code).</figcaption>
+            </figure>
+          </div>
+          <div class="card-links">
+            <a href="https://github.com/dokumenhilangid-blip/drift" target="_blank" rel="noopener noreferrer">Repository <span aria-hidden="true">↗</span></a>
           </div>
         </article>
       </div>
     </div>
   </section>
-
-  <section id="research" aria-labelledby="research-title">
+  <section class="section" id="systems" aria-labelledby="systems-title">
     <div class="wrap">
-      <h2 id="research-title">Competition &amp; research</h2>
-      <p class="lede">Public leaderboard scores from Kaggle, and one note on how security research is handled.</p>
-      <div class="card kaggle">
-        <div class="scores">
-          <div class="score"><span class="name">Name That LLM</span><span class="val">0.514</span></div>
-          <div class="score"><span class="name">Squares in Squares</span><span class="val">27.4888439686</span></div>
-        </div>
-        <p class="disclosure">Security research: reports submitted through official channels, details withheld per program disclosure policy.</p>
+      <div class="section-head">
+        <p class="section-label">02 / Systems &amp; experiments</p>
+        <h2 id="systems-title">Smaller projects, same honesty.</h2>
+        <p class="section-intro">Six compact records: prototypes, local infrastructure, and research.</p>
+      </div>
+
+      <div class="mini-grid">
+        <article class="mini-card" aria-labelledby="p6-title">
+          <div class="card-top">
+            <p class="status"><span class="status-dot" aria-hidden="true"></span>Functional prototype</p>
+            <span class="card-index" aria-hidden="true">06</span>
+          </div>
+          <h3 id="p6-title">nanoorcloud-agent</h3>
+          <p class="mini-desc">A browser-run agent network with a coordinator and specialists; its numbers are grounded in deterministic site actions over a bundled sample run.</p>
+          <div class="mini-foot">
+            <a href="https://github.com/BaraGitDoodle-bit/nanoorcloud-agent" target="_blank" rel="noopener noreferrer">Repository <span aria-hidden="true">↗</span></a>
+            <a href="https://baragitdoodle-bit.github.io/nanoorcloud-agent/" target="_blank" rel="noopener noreferrer">Live site <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="mini-card" aria-labelledby="p7-title">
+          <div class="card-top">
+            <p class="status"><span class="status-dot" aria-hidden="true"></span>Functional prototype — VPS-local only</p>
+            <span class="card-index" aria-hidden="true">07</span>
+          </div>
+          <h3 id="p7-title">Jev Observatory</h3>
+          <p class="mini-desc">A FastMCP observability server exposing the <code>jev_gate</code> and <code>jev_why_not</code> tools, running on a VPS and integrated with a trading-bot semantic layer.</p>
+          <div class="mini-foot">
+            <p>No public repository, no public endpoint; port unknown.</p>
+          </div>
+        </article>
+
+        <article class="mini-card" aria-labelledby="p8-title">
+          <div class="card-top">
+            <p class="status"><span class="status-dot" aria-hidden="true"></span>Functional prototype — deployment unknown</p>
+            <span class="card-index" aria-hidden="true">08</span>
+          </div>
+          <h3 id="p8-title">Sinyal</h3>
+          <p class="mini-desc">A Next.js reveal experience with a Gemini server route, validation, and a generic-card fallback; PRD/SDD docs and screenshots in the repo.</p>
+          <div class="mini-foot">
+            <a href="https://github.com/dokumenhilangid-blip/Sinyal" target="_blank" rel="noopener noreferrer">Repository <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="mini-card" aria-labelledby="p9-title">
+          <div class="card-top">
+            <p class="status"><span class="status-dot" aria-hidden="true"></span>Functional prototype</p>
+            <span class="card-index" aria-hidden="true">09</span>
+          </div>
+          <h3 id="p9-title">cookie-cookbook</h3>
+          <p class="mini-desc">A Next.js and wallet-adapter app with a real chain-health RPC route; recipe and treasury helpers are real code.</p>
+          <p class="note mini-note"><strong>Note:</strong> End-to-end signing flow and live demo not verified.</p>
+          <div class="mini-foot">
+            <a href="https://github.com/theandroidaiarchitect-dev/cookie-cookbook" target="_blank" rel="noopener noreferrer">Repository <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+        <article class="mini-card" aria-labelledby="p10-title">
+          <div class="card-top">
+            <p class="status"><span class="status-dot" aria-hidden="true"></span>Functional prototype</p>
+            <span class="card-index" aria-hidden="true">10</span>
+          </div>
+          <h3 id="p10-title">form-to-telegram-kit</h3>
+          <p class="mini-desc">A small utility kit, not a product: an Express and TypeScript form to Telegram notification flow, with honeypot and rate limiting, validation, a health endpoint, a Netlify wrapper, and one test.</p>
+          <div class="mini-foot">
+            <a href="https://github.com/BaraGitDoodle-bit/form-to-telegram-kit" target="_blank" rel="noopener noreferrer">Repository <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+
+        <article class="mini-card" aria-labelledby="p11-title">
+          <div class="card-top">
+            <p class="status"><span class="status-dot" aria-hidden="true"></span>Research</p>
+            <span class="card-index" aria-hidden="true">11</span>
+          </div>
+          <h3 id="p11-title">Kaggle research</h3>
+          <p class="mini-desc">Two competitions, public scores verified from the command line under the account <code>dokumenhilang</code>.</p>
+          <ul class="research-list">
+            <li><strong>Name That LLM</strong> — public score 0.514 (ref 58772577). Approach: DeBERTa ensembles with harvest stacking.</li>
+            <li><strong>Squares in Squares</strong> — public score 27.4888439686, lower is better (ref 58787047). Approach: annealing with independent SAT verification.</li>
+          </ul>
+          <p class="note mini-note"><strong>Note:</strong> No rank claims. Private-leaderboard results unknown.</p>
+          <p class="security-line">Security research: reports submitted through official channels, details withheld per program disclosure policy.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="wrap about-grid">
+      <div>
+        <p class="section-label">03 / About</p>
+        <h2 id="about-title">Self-taught and shipping real systems.</h2>
+      </div>
+      <div class="about-copy">
+        <p>Nur Toha Mubarak, 23, Jakarta Utara. Self-taught AI Systems Builder &amp; Digital Product Developer. He builds AI-powered applications, agent infrastructure, automation, and developer tools, working AI-assisted and shipping real systems: a routing engine with tests and a live deployment, a platform game inside Reddit, a mobile monitor with an honest data layer, a minimal virtual machine, and a vision-analysis prototype with designed fallbacks.</p>
+        <p>Employment: HSE Fire Watcher (PT Bina Karya Prima via an outsourcing company, Jan 2024–present, Kota Bekasi) — background, not the technical identity. Education: SMAN 110 Jakarta Utara.</p>
       </div>
     </div>
   </section>
 
-  <section id="background" aria-labelledby="background-title">
-    <div class="wrap">
-      <h2 id="background-title">Background</h2>
-      <div class="entries" style="margin-top: 20px;">
-        <article class="entry">
-          <h3>HSE Fire Watcher</h3>
-          <p class="org">PT Bina Karya Prima</p>
-          <p class="when">Jan 2024 — Present · Kota Bekasi, Indonesia</p>
-          <p>Employed through PT Bina Cipta Abadi. Fire watch and worksite safety monitoring, supporting safe working procedures.</p>
-        </article>
-        <article class="entry">
-          <h3>SMAN 110 Jakarta Utara</h3>
-          <p class="org">Social Sciences (IPS)</p>
-          <p class="when">Aug 2018 — May 2021 · Jakarta Utara, Indonesia</p>
-          <p>Graduated.</p>
-        </article>
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <div class="wrap contact-grid">
+      <div>
+        <p class="section-label">04 / Contact</p>
+        <h2 id="contact-title">Contact</h2>
+        <p class="contact-lead">Email is the primary route.</p>
+        <a class="button" href="mailto:tohamubarak110@gmail.com" target="_blank" rel="noopener noreferrer">Email me</a>
       </div>
-    </div>
-  </section>
-
-  <section class="contact" id="contact" aria-labelledby="contact-title">
-    <div class="wrap">
-      <h2 id="contact-title">Let's build something.</h2>
-      <div class="actions">
-        <a class="btn btn-primary" href="mailto:tohamubarak110@gmail.com">Email me</a>
-      </div>
-      <ul class="links-inline">
-        <li><a href="https://github.com/BaraGitDoodle-bit" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-        <li><a href="https://github.com/theandroidaiarchitect-dev" target="_blank" rel="noopener noreferrer">GitHub — theandroidaiarchitect-dev</a></li>
-        <li><a href="https://github.com/dokumenhilangid-blip" target="_blank" rel="noopener noreferrer">GitHub — research</a></li>
-        <li><a href="https://www.linkedin.com/in/nur-toha-mubarak-b8329a280" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      <ul class="contact-links">
+        <li><a href="https://github.com/BaraGitDoodle-bit" target="_blank" rel="noopener noreferrer"><span>GitHub — BaraGitDoodle-bit (primary)</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://github.com/dokumenhilangid-blip" target="_blank" rel="noopener noreferrer"><span>GitHub — dokumenhilangid-blip</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://github.com/theandroidaiarchitect-dev" target="_blank" rel="noopener noreferrer"><span>GitHub — theandroidaiarchitect-dev</span><span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://www.linkedin.com/in/nur-toha-mubarak-b8329a280" target="_blank" rel="noopener noreferrer"><span>LinkedIn — Nur Toha Mubarak</span><span class="arrow" aria-hidden="true">↗</span></a></li>
       </ul>
     </div>
   </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <span>Nur Toha Mubarak · Jakarta Utara, Indonesia</span>
-    <span>2026</span>
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>Nur Toha Mubarak · Jakarta Utara, Indonesia</p>
+    <p>2026</p>
   </div>
 </footer>
 </body>
